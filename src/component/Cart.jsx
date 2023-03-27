@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {deleteCartFromLS} from "../utility/index.js";
 
 const Cart = ({cart, addToCart}) => {
-    let countPressCart = 0, totalPrice = 0, totalShippingCharge = 0, tax = 0, grandTotal = 0;
+    let totalPrice = 0, totalShippingCharge = 0, tax = 0, grandTotal = 0;
+
+    const [showCart, setShowCart] = useState(false);
 
     if (cart.length) {
         totalPrice = cart.reduce((total, current) => total + (current.price * current.quantity), 0);
@@ -14,12 +16,12 @@ const Cart = ({cart, addToCart}) => {
     const toggleCart = ({currentTarget: elem}) => {
         elem.parentElement.classList.toggle("left-full");
 
-        if (countPressCart) {
+        if (showCart) {
             elem.firstElementChild.setAttribute("name", "left-arrow");
-            countPressCart--;
+            setShowCart(false);
         } else {
             elem.firstElementChild.setAttribute("name", "right-arrow");
-            countPressCart++;
+            setShowCart(true);
         }
     }
 
