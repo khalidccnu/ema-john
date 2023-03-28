@@ -14,12 +14,12 @@ const Cart = ({cart, addToCart}) => {
     }
 
     const toggleCart = ({currentTarget: elem}) => {
-        elem.parentElement.classList.toggle("left-full");
-
         if (showCart) {
+            elem.parentElement.classList.replace("left-[70%]", "left-full");
             elem.firstElementChild.setAttribute("name", "left-arrow");
             setShowCart(false);
         } else {
+            elem.parentElement.classList.replace("left-full", "left-[70%]");
             elem.firstElementChild.setAttribute("name", "right-arrow");
             setShowCart(true);
         }
@@ -31,7 +31,7 @@ const Cart = ({cart, addToCart}) => {
     }
 
     return (
-        <div className="cart fixed top-1/2 -translate-y-1/2 left-full right-1.5 bg-neutral-300 px-5 py-6 rounded-box">
+        <div className="cart fixed top-1/2 -translate-y-1/2 left-full bg-neutral-300 px-5 py-6 rounded-box transition-[left] duration-300">
             <div className="absolute top-1/2 right-[calc(100%_-_1.25rem)] -translate-x-1/2 -translate-y-1/2 cursor-pointer" onClick={e => toggleCart(e)}>
                 <box-icon type='solid' name='left-arrow' color="rgb(212 212 212)" size="3rem"></box-icon>
             </div>

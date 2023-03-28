@@ -18,12 +18,12 @@ const Product = ({id, name, price, seller, ratings, img, addToCart}) => {
                 <h4 className="font-medium">Price: ${price}</h4>
                 <span className="text-gray-500">Manufacturer: {seller}</span>
                 <span className="text-gray-500">Rating: {ratings}</span>
-                <div className="card-actions justify-end">
-                    <button className="btn btn-sm btn-accent px-4" onClick={handleAddToCart}>
-                        <span>Add to Cart</span>
-                        <box-icon type="solid" name="cart-add"></box-icon>
-                    </button>
-                </div>
+            </div>
+            <div className="card-actions justify-end pr-4 pb-4">
+                <button className="btn btn-sm btn-accent px-4" onClick={handleAddToCart}>
+                    <span>Add to Cart</span>
+                    <box-icon type="solid" name="cart-add"></box-icon>
+                </button>
             </div>
         </div>
     );
