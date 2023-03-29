@@ -11,6 +11,7 @@ const Shop = () => {
     const [showAll, setShowAll] = useState(false);
     const [cart, setCart] = useState([]);
     const [addToCart, setAddToCart] = useState(false);
+    const [clearCart, setClearCart] = useState(false);
 
     useEffect(_ => {
         (async _ => {
@@ -48,8 +49,8 @@ const Shop = () => {
                         </div>
                     ) : (
                         <>
-                        <Products products={products} addToCart={setAddToCart} showAll={showAll} setShowAll={setShowAll} />
-                        <Cart cart={cart} addToCart={setAddToCart} />
+                        <Products products={products} addToCart={setAddToCart} clearCart={clearCart} showAll={showAll} setShowAll={setShowAll} />
+                        <Cart cart={cart} addToCart={setAddToCart} clearCart={setClearCart} />
                         </>
                     )
                 }

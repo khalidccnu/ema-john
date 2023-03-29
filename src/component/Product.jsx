@@ -1,17 +1,43 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import 'boxicons';
-import {addProductToLS} from "../utility/index.js";
+import {addProductToLS, getCartFromLS, removeProductFromLS} from "../utility/index.js";
 
-const Product = ({id, name, price, seller, ratings, img, addToCart}) => {
+const Product = ({id, name, price, seller, ratings, img, addToCart, clearCart}) => {
+    const [existProduct, setExistProduct] = useState(false);
+
+    const checkProductInLS = _ => {
+        const cart = getCartFromLS();
+
+        id in cart ? setExistProduct(true) : existProduct ? setExistProduct(false) : null;
+    }
+
     const handleAddToCart = _ => {
         addProductToLS(id);
+        setExistProduct(true);
         addToCart(true);
     }
 
+    const handleRemoveFromCart = _ => {
+        removeProductFromLS(id);
+        setExistProduct(false);
+        addToCart(true);
+    }
+
+    useEffect(_ => {
+        checkProductInLS();
+    }, [clearCart]);
+
     return (
         <div className="card card-compact bg-neutral-200/30 shadow-sm">
-            <figure>
+            <figure className="relative">
                 <img src={img} alt="" />
+                {
+                    existProduct ? (
+                        <button className="absolute top-4 right-4" onClick={handleRemoveFromCart}>
+                            <box-icon name='message-rounded-minus' color='rgb(218, 13, 13)'></box-icon>
+                        </button>
+                    ) : null
+                }
             </figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>

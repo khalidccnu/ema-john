@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {deleteCartFromLS} from "../utility/index.js";
 
-const Cart = ({cart, addToCart}) => {
+const Cart = ({cart, addToCart, clearCart}) => {
     let totalPrice = 0, totalShippingCharge = 0, tax = 0, grandTotal = 0;
 
     const [showCart, setShowCart] = useState(false);
@@ -27,6 +27,7 @@ const Cart = ({cart, addToCart}) => {
 
     const handleClearCart = _ => {
         deleteCartFromLS();
+        clearCart(true);
         addToCart(true);
     }
 

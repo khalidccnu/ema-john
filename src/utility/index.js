@@ -8,6 +8,13 @@ export const addProductToLS = id => {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+export const removeProductFromLS = id => {
+    const cart = getCartFromLS();
+
+    delete cart[id];
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
 export const getCartFromLS = _ => {
     let cart = {};
     const getCart = localStorage.getItem("cart");
