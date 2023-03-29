@@ -2,7 +2,9 @@ import React, {useEffect, useState} from 'react';
 import 'boxicons';
 import {addProductToLS, getCartFromLS, removeProductFromLS} from "../utility/index.js";
 
-const Product = ({id, name, price, seller, ratings, img, addToCart, clearCart}) => {
+const Product = ({product, productDetail, addToCart, clearCart}) => {
+    const {id, name, price, seller, ratings, img} = product;
+
     const [existProduct, setExistProduct] = useState(false);
 
     const checkProductInLS = _ => {
@@ -31,6 +33,9 @@ const Product = ({id, name, price, seller, ratings, img, addToCart, clearCart}) 
         <div className="card card-compact bg-neutral-200/30 shadow-sm">
             <figure className="relative">
                 <img src={img} alt="" />
+                <label htmlFor="product-detail" className="absolute top-4 left-4 cursor-pointer" onClick={_ => productDetail(product)}>
+                    <box-icon name='show' color='#038b03'></box-icon>
+                </label>
                 {
                     existProduct ? (
                         <button className="absolute top-4 right-4" onClick={handleRemoveFromCart}>
