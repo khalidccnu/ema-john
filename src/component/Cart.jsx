@@ -15,11 +15,13 @@ const Cart = ({cart, addToCart, clearCart}) => {
 
     const toggleCart = ({currentTarget: elem}) => {
         if (showCart) {
-            elem.parentElement.classList.replace("left-[70%]", "left-full");
+            elem.parentElement.classList.replace("left-1/2", "left-full");
+            elem.parentElement.classList.remove("-translate-x-1/2");
             elem.firstElementChild.setAttribute("name", "left-arrow");
             setShowCart(false);
         } else {
-            elem.parentElement.classList.replace("left-full", "left-[70%]");
+            elem.parentElement.classList.replace("left-full", "left-1/2");
+            elem.parentElement.classList.add("-translate-x-1/2");
             elem.firstElementChild.setAttribute("name", "right-arrow");
             setShowCart(true);
         }
@@ -47,11 +49,11 @@ const Cart = ({cart, addToCart, clearCart}) => {
                 <h3>Grand Total: ${grandTotal}</h3>
             </div>
             <div className="mt-5 space-y-1.5">
-                <button type="button" className="btn btn-sm w-full space-x-1 text-white" onClick={handleClearCart}>
+                <button type="button" className="btn btn-sm w-full h-auto py-2 space-x-1 text-white" onClick={handleClearCart}>
                     <span>Clear Cart</span>
                     <box-icon name='trash' color='#fff'></box-icon>
                 </button>
-                <button type="button" className="btn btn-sm w-full space-x-1 text-white">
+                <button type="button" className="btn btn-sm w-full h-auto py-2 space-x-1 text-white">
                     <span>Review Order</span>
                     <box-icon name='right-arrow-alt' color='#fff'></box-icon>
                 </button>
