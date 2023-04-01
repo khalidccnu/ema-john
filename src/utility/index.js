@@ -1,27 +1,27 @@
-export const addProductToLS = id => {
-    let cart = getCartFromLS();
-    const quantity = cart[id];
+export const addProductToLS = (id) => {
+  let cart = getCartFromLS();
+  const quantity = cart[id];
 
-    if (!quantity) cart[id] = 1;
-    else cart[id] = quantity + 1;
+  if (!quantity) cart[id] = 1;
+  else cart[id] = quantity + 1;
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
+  localStorage.setItem("cart", JSON.stringify(cart));
+};
 
-export const removeProductFromLS = id => {
-    const cart = getCartFromLS();
+export const removeProductFromLS = (id) => {
+  const cart = getCartFromLS();
 
-    delete cart[id];
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
+  delete cart[id];
+  localStorage.setItem("cart", JSON.stringify(cart));
+};
 
-export const getCartFromLS = _ => {
-    let cart = {};
-    const getCart = localStorage.getItem("cart");
+export const getCartFromLS = (_) => {
+  let cart = {};
+  const getCart = localStorage.getItem("cart");
 
-    if (getCart) cart = JSON.parse(getCart);
+  if (getCart) cart = JSON.parse(getCart);
 
-    return cart;
-}
+  return cart;
+};
 
-export const deleteCartFromLS = _ => localStorage.removeItem("cart");
+export const deleteCartFromLS = (_) => localStorage.removeItem("cart");

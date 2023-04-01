@@ -4,12 +4,12 @@ import Footer from "./component/Footer.jsx";
 
 function App() {
   return (
-      <>
+    <>
       <Nav />
       <Shop />
       <Footer />
-      </>
-  )
+    </>
+  );
 }
 
-export default App
+export default App;
