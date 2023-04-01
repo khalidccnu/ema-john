@@ -17,9 +17,9 @@ const Nav = () => {
                             </svg>
                         </label>
                         <ul tabIndex={0} className="dropdown-content menu menu-compact md:menu-normal md:menu-horizontal bg-neutral-800 md:bg-transparent w-52 rounded-box mt-3 md:mt-0 p-2 md:p-0 shadow md:shadow-none capitalize md:!relative md:!visible md:!opacity-100">
-                            <li><a href="#" className="text-white">order</a></li>
+                            <li><a href="#" className="text-white">home</a></li>
+                            <li><a href="#" className="text-white">shop</a></li>
                             <li><a href="#" className="text-white">order review</a></li>
-                            <li><a href="#" className="text-white">manage inventory</a></li>
                             <li><a href="#" className="text-white">login</a></li>
                         </ul>
                     </div>
