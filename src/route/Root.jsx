@@ -6,7 +6,7 @@ import Footer from "../component/Footer.jsx";
 const Root = () => {
   return (
     <>
-      <Nav />
+      <Nav navLink={true} />
       <Outlet />
       <Footer />
     </>
