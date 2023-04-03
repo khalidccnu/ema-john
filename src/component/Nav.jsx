@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import brandLogo from "../asset/logo.svg";
 
 const Nav = () => {
@@ -31,25 +32,37 @@ const Nav = () => {
                 tabIndex={0}
                 className="dropdown-content menu menu-compact md:menu-normal md:menu-horizontal bg-neutral-800 md:bg-transparent w-52 rounded-box mt-3 md:mt-0 p-2 md:p-0 shadow md:shadow-none capitalize md:!relative md:!visible md:!opacity-100"
               >
-                <li>
-                  <a href="#" className="text-white">
+                <li className="text-white">
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) => (isActive ? "bg-accent" : "")}
+                  >
                     home
-                  </a>
+                  </NavLink>
                 </li>
-                <li>
-                  <a href="#" className="text-white">
+                <li className="text-white">
+                  <NavLink
+                    to="/shop"
+                    className={({ isActive }) => (isActive ? "bg-accent" : "")}
+                  >
                     shop
-                  </a>
+                  </NavLink>
                 </li>
-                <li>
-                  <a href="#" className="text-white">
+                <li className="text-white">
+                  <NavLink
+                    to="/order-review"
+                    className={({ isActive }) => (isActive ? "bg-accent" : "")}
+                  >
                     order review
-                  </a>
+                  </NavLink>
                 </li>
-                <li>
-                  <a href="#" className="text-white">
+                <li className="text-white">
+                  <NavLink
+                    to="/login"
+                    className={({ isActive }) => (isActive ? "bg-accent" : "")}
+                  >
                     login
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>

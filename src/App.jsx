@@ -1,15 +1,25 @@
-import Nav from "./component/Nav.jsx";
-import Shop from "./component/Shop.jsx";
-import Footer from "./component/Footer.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Root from "./route/Root.jsx";
+import Error from "./route/Error.jsx";
+import Shop from "./route/Shop.jsx";
 
 function App() {
-  return (
-    <>
-      <Nav />
-      <Shop />
-      <Footer />
-    </>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Root />,
+      errorElement: <Error />,
+      children: [
+        {
+          path: "/shop",
+          element: <Shop />,
+          loader: (_) => fetch(`./products.json`),
+        },
+      ],
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;
