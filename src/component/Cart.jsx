@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { deleteCartFromLS } from "../utility/index.js";
 
 const Cart = ({ cart, addToCart, clearCart }) => {
@@ -8,6 +9,7 @@ const Cart = ({ cart, addToCart, clearCart }) => {
     grandTotal = 0;
 
   const [showCart, setShowCart] = useState(false);
+  const navigate = useNavigate();
 
   if (cart.length) {
     totalPrice = cart.reduce(
@@ -18,7 +20,7 @@ const Cart = ({ cart, addToCart, clearCart }) => {
       (total, current) => total + current.shipping * current.quantity,
       0
     );
-    tax = (totalPrice * cart.length) / 100;
+    tax = (totalPrice * 7) / 100;
     grandTotal = totalPrice + totalShippingCharge + tax;
   }
 
@@ -79,6 +81,7 @@ const Cart = ({ cart, addToCart, clearCart }) => {
         <button
           type="button"
           className="btn btn-sm w-full h-auto py-2 space-x-1 text-white"
+          onClick={(_) => navigate("/order-review")}
         >
           <span>Review Order</span>
           <box-icon name="right-arrow-alt" color="#fff"></box-icon>

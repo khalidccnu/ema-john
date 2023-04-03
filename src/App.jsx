@@ -3,6 +3,7 @@ import Root from "./route/Root.jsx";
 import Error from "./route/Error.jsx";
 import Home from "./route/Home.jsx";
 import Shop from "./route/Shop.jsx";
+import OrderReview from "./route/OrderReview.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -18,6 +19,11 @@ function App() {
         {
           path: "/shop",
           element: <Shop />,
+          loader: (_) => fetch(`./products.json`),
+        },
+        {
+          path: "/order-review",
+          element: <OrderReview />,
           loader: (_) => fetch(`./products.json`),
         },
       ],
