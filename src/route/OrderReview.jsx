@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import {
   deleteCartFromLS,
   getCartFromLS,
   removeProductFromLS,
 } from "../utility/index.js";
 import imgEmptyCart from "../asset/empty-cart.svg";
+import { CircleLoader } from "react-spinners";
 
 const OrderReview = () => {
   let totalPrice = 0,
@@ -13,6 +14,7 @@ const OrderReview = () => {
     tax = 0,
     grandTotal = 0;
 
+  const { state } = useNavigation();
   const products = useLoaderData();
   const [cart, setCart] = useState([]);
   const [rmProductFromCart, setRMProductFromCart] = useState(false);
@@ -59,7 +61,11 @@ const OrderReview = () => {
   return (
     <section className="py-5">
       <div className="container">
-        {cart.length ? (
+        {state !== "idle" ? (
+          <div className="mx-auto w-fit">
+            <CircleLoader color="#36d7b7" />
+          </div>
+        ) : cart.length ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
             <div className="cart-product space-y-4">
               {cart.map((product) => {
@@ -93,7 +99,7 @@ const OrderReview = () => {
               })}
             </div>
             <div className="order-summary">
-              <div className="cart bg-neutral-300/50 px-5 py-6 rounded-lg">
+              <div className="bg-neutral-300/50 px-5 py-6 rounded-lg">
                 <div>
                   <h2 className="relative font-semibold text-2xl text-center after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1/4 after:h-0.5 after:bg-gray-500">
                     Order Summery
