@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import Product from "./Product.jsx";
+import Pagination from "./Pagination.jsx";
 import ProductDetail from "./ProductDetail.jsx";
 
-const Products = ({ products, addToCart, clearCart, showAll, setShowAll }) => {
+const Products = ({
+  currentProducts,
+  productsLength,
+  currentPage,
+  setCurrentPage,
+  perPage,
+  addToCart,
+  clearCart,
+}) => {
   const [productDetail, setProductDetail] = useState([]);
 
   return (
     <div className="products">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {products.slice(0, showAll ? products.length : 6).map((product) => (
+        {currentProducts.map((product) => (
           <Product
             addToCart={addToCart}
             clearCart={clearCart}
@@ -18,17 +27,12 @@ const Products = ({ products, addToCart, clearCart, showAll, setShowAll }) => {
           />
         ))}
       </div>
-      {showAll || (
-        <div className="mt-5 text-center">
-          <button
-            type="button"
-            className="btn btn-sm btn-info"
-            onClick={(_) => setShowAll(true)}
-          >
-            Show All
-          </button>
-        </div>
-      )}
+      <Pagination
+        total={productsLength}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        perPage={perPage}
+      />
       <ProductDetail product={productDetail} />
     </div>
   );

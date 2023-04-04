@@ -9,10 +9,15 @@ import Cart from "../component/Cart.jsx";
 const Shop = () => {
   const { state } = useNavigation();
   const products = useLoaderData();
-  const [showAll, setShowAll] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const [cart, setCart] = useState([]);
   const [addToCart, setAddToCart] = useState(false);
   const [clearCart, setClearCart] = useState(false);
+
+  let productsPerPage = 9;
+  let lastProductIndex = currentPage * productsPerPage;
+  let firstProductIndex = lastProductIndex - productsPerPage;
+  const currentProducts = products.slice(firstProductIndex, lastProductIndex);
 
   useEffect(
     (_) => {
@@ -41,11 +46,13 @@ const Shop = () => {
         ) : (
           <>
             <Products
-              products={products}
+              currentProducts={currentProducts}
+              productsLength={products.length}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              perPage={productsPerPage}
               addToCart={setAddToCart}
               clearCart={clearCart}
-              showAll={showAll}
-              setShowAll={setShowAll}
             />
             <Cart
               cart={cart}
