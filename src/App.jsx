@@ -4,6 +4,7 @@ import Error from "./route/Error.jsx";
 import Home from "./route/Home.jsx";
 import Shop from "./route/Shop.jsx";
 import OrderReview from "./route/OrderReview.jsx";
+import Login from "./route/Login.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -25,6 +26,10 @@ function App() {
           path: "/order-review",
           element: <OrderReview />,
           loader: (_) => fetch(`./products.json`),
+        },
+        {
+          path: "/login",
+          element: <Login />,
         },
       ],
     },
