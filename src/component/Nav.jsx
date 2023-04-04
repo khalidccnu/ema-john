@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import brandLogo from "../asset/logo.svg";
 
 const Nav = ({ navLink }) => {
+  const [hbMenu, setHbMenu] = useState(false);
+
+  const handleHbMenu = (_) => {
+    setHbMenu(!hbMenu);
+  };
+
   return (
     <>
       <nav className="bg-neutral-900">
@@ -12,29 +18,29 @@ const Nav = ({ navLink }) => {
               <img src={brandLogo} alt="" />
             </div>
             {navLink ? (
-              <div className="dropdown dropdown-end">
-                <label
-                  tabIndex={0}
-                  className="btn btn-sm btn-primary md:hidden"
+              <div className="navbar-nav relative">
+                <span
+                  className="sm:hidden cursor-pointer"
+                  onClick={handleHbMenu}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M4 6h16M4 12h16M4 18h7"
-                    />
-                  </svg>
-                </label>
+                  {hbMenu ? (
+                    <box-icon
+                      type="regular"
+                      name="menu-alt-right"
+                      color="#fff"
+                    ></box-icon>
+                  ) : (
+                    <box-icon
+                      type="regular"
+                      name="menu"
+                      color="#fff"
+                    ></box-icon>
+                  )}
+                </span>
                 <ul
-                  tabIndex={0}
-                  className="dropdown-content menu menu-compact md:menu-normal md:menu-horizontal bg-neutral-800 md:bg-transparent w-52 rounded-box mt-3 md:mt-0 p-2 md:p-0 shadow md:shadow-none capitalize md:!relative md:!visible md:!opacity-100"
+                  className={`menu menu-compact sm:menu-normal sm:menu-horizontal absolute sm:static ${
+                    hbMenu ? "top-10" : "-top-60"
+                  } right-0 bg-neutral-800 sm:bg-transparent w-52 sm:w-auto p-2 sm:p-0 rounded-box shadow sm:shadow-none capitalize`}
                 >
                   <li className="text-white">
                     <NavLink

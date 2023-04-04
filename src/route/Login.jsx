@@ -44,7 +44,7 @@ const Login = () => {
                   value={input.email}
                   className="input input-sm input-bordered rounded-none w-full"
                   onChange={changeInput}
-                  required="true"
+                  required={true}
                 />
               </div>
               <div>
@@ -55,7 +55,7 @@ const Login = () => {
                   value={input.password}
                   className="input input-sm input-bordered rounded-none w-full"
                   onChange={changeInput}
-                  required="true"
+                  required={true}
                 />
               </div>
               <div>
