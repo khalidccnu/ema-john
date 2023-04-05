@@ -1,28 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { deleteCartFromLS } from "../utility/index.js";
+import { deleteCartFromLS, shoppingCartCalc } from "../utility/index.js";
 
 const Cart = ({ cart, addToCart, clearCart }) => {
-  let totalPrice = 0,
-    totalShippingCharge = 0,
-    tax = 0,
-    grandTotal = 0;
-
+  const [cartCalc, setCartCalc] = useState({
+    totalPrice: 0,
+    totalShippingCharge: 0,
+    tax: 0,
+    grandTotal: 0,
+  });
   const [showCart, setShowCart] = useState(false);
   const navigate = useNavigate();
-
-  if (cart.length) {
-    totalPrice = cart.reduce(
-      (total, current) => total + current.price * current.quantity,
-      0
-    );
-    totalShippingCharge = cart.reduce(
-      (total, current) => total + current.shipping * current.quantity,
-      0
-    );
-    tax = (totalPrice * 7) / 100;
-    grandTotal = totalPrice + totalShippingCharge + tax;
-  }
 
   const toggleCart = ({ currentTarget: elem }) => {
     if (showCart) {
@@ -50,6 +38,14 @@ const Cart = ({ cart, addToCart, clearCart }) => {
     addToCart(true);
   };
 
+  useEffect(
+    (_) => {
+      const orderCalc = shoppingCartCalc(cart);
+      setCartCalc({ ...orderCalc });
+    },
+    [cart]
+  );
+
   return (
     <div className="cart fixed top-1/2 -translate-y-1/2 left-full bg-neutral-300 min-w-[14rem] px-5 py-6 rounded-box transition-[left] duration-300">
       <div
@@ -64,11 +60,11 @@ const Cart = ({ cart, addToCart, clearCart }) => {
         </h2>
         <ul className="mt-5 mb-4 space-y-1.5">
           <li>Selected Items: {cart.length}</li>
-          <li>Total Price: ${totalPrice}</li>
-          <li>Total Shipping Charge: ${totalShippingCharge}</li>
-          <li>Tax: ${tax}</li>
+          <li>Total Price: ${cartCalc.totalPrice}</li>
+          <li>Total Shipping Charge: ${cartCalc.totalShippingCharge}</li>
+          <li>Tax: ${cartCalc.tax}</li>
         </ul>
-        <h3>Grand Total: ${grandTotal}</h3>
+        <h3>Grand Total: ${cartCalc.grandTotal}</h3>
       </div>
       <div className="mt-5 space-y-1.5">
         <button

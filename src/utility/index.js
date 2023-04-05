@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const addProductToLS = (id) => {
   let cart = getCartFromLS();
   const quantity = cart[id];
@@ -25,3 +27,37 @@ export const getCartFromLS = (_) => {
 };
 
 export const deleteCartFromLS = (_) => localStorage.removeItem("cart");
+
+export const shoppingCart = async (items) => {
+  if (typeof items === "object") items = 0;
+
+  let products =
+    items ||
+    (await axios.get(`./products.json`).then((response) => response.data));
+
+  const getCart = getCartFromLS();
+  const cartItems = [];
+
+  for (let item in getCart) {
+    const elem = products.find((product) => product.id === item);
+    elem.quantity = getCart[item];
+    cartItems.push(elem);
+  }
+
+  return cartItems;
+};
+
+export const shoppingCartCalc = (cartItems) => {
+  let totalPrice = cartItems.reduce(
+    (total, current) => total + current.price * current.quantity,
+    0
+  );
+  let totalShippingCharge = cartItems.reduce(
+    (total, current) => total + current.shipping * current.quantity,
+    0
+  );
+  let tax = (totalPrice * 7) / 100;
+  let grandTotal = totalPrice + totalShippingCharge + tax;
+
+  return { totalPrice, totalShippingCharge, tax, grandTotal };
+};

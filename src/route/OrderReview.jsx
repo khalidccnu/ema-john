@@ -3,57 +3,41 @@ import { useLoaderData, useNavigation } from "react-router-dom";
 import { CircleLoader } from "react-spinners";
 import {
   deleteCartFromLS,
-  getCartFromLS,
   removeProductFromLS,
+  shoppingCartCalc,
 } from "../utility/index.js";
 import imgEmptyCart from "../asset/empty-cart.svg";
 
 const OrderReview = () => {
-  let totalPrice = 0,
-    totalShippingCharge = 0,
-    tax = 0,
-    grandTotal = 0;
-
   const { state } = useNavigation();
   const products = useLoaderData();
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(products);
+  const [cartCalc, setCartCalc] = useState({
+    totalPrice: 0,
+    totalShippingCharge: 0,
+    tax: 0,
+    grandTotal: 0,
+  });
   const [rmProductFromCart, setRMProductFromCart] = useState(false);
-
-  if (cart.length) {
-    totalPrice = cart.reduce(
-      (total, current) => total + current.price * current.quantity,
-      0
-    );
-    totalShippingCharge = cart.reduce(
-      (total, current) => total + current.shipping * current.quantity,
-      0
-    );
-    tax = (totalPrice * 7) / 100;
-    grandTotal = totalPrice + totalShippingCharge + tax;
-  }
 
   const removeProduct = (id) => {
     removeProductFromLS(id);
+
+    const remainingProducts = cart.filter((product) => product.id !== id);
+
+    setCart(remainingProducts);
     setRMProductFromCart(!rmProductFromCart);
   };
 
   const handleClearCart = (_) => {
     deleteCartFromLS();
-    setRMProductFromCart(!rmProductFromCart);
+    setCart([]);
   };
 
   useEffect(
     (_) => {
-      const cartItems = [];
-      const getCart = getCartFromLS();
-
-      for (let item in getCart) {
-        const elem = products.find((product) => product.id === item);
-        elem.quantity = getCart[item];
-        cartItems.push(elem);
-      }
-
-      setCart(cartItems);
+      const orderCalc = shoppingCartCalc(cart);
+      setCartCalc({ ...orderCalc });
     },
     [rmProductFromCart]
   );
@@ -101,11 +85,13 @@ const OrderReview = () => {
                   </h2>
                   <ul className="mt-5 mb-4 space-y-1.5">
                     <li>Selected Items: {cart.length}</li>
-                    <li>Total Price: ${totalPrice}</li>
-                    <li>Total Shipping Charge: ${totalShippingCharge}</li>
-                    <li>Tax: ${tax}</li>
+                    <li>Total Price: ${cartCalc.totalPrice}</li>
+                    <li>
+                      Total Shipping Charge: ${cartCalc.totalShippingCharge}
+                    </li>
+                    <li>Tax: ${cartCalc.tax}</li>
                   </ul>
-                  <h3>Grand Total: ${grandTotal}</h3>
+                  <h3>Grand Total: ${cartCalc.grandTotal}</h3>
                 </div>
                 <div className="mt-5 space-y-1.5">
                   <button

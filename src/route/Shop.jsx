@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, useNavigation } from "react-router-dom";
 import { CircleLoader } from "react-spinners";
-import { getCartFromLS } from "../utility/index.js";
+import { shoppingCart } from "../utility/index.js";
 import Products from "../component/Products.jsx";
 import Cart from "../component/Cart.jsx";
 
@@ -20,16 +20,11 @@ const Shop = () => {
 
   useEffect(
     (_) => {
-      const cartItems = [];
-      const getCart = getCartFromLS();
+      (async (_) => {
+        const cartItems = await shoppingCart(products);
+        setCart(cartItems);
+      })();
 
-      for (let item in getCart) {
-        const elem = products.find((product) => product.id === item);
-        elem.quantity = getCart[item];
-        cartItems.push(elem);
-      }
-
-      setCart(cartItems);
       addToCart ? setAddToCart(false) : null;
     },
     [addToCart]

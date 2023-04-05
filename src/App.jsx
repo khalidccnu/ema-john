@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { shoppingCart } from "./utility/index.js";
 import Root from "./route/Root.jsx";
 import Error from "./route/Error.jsx";
 import Home from "./route/Home.jsx";
@@ -26,7 +27,7 @@ function App() {
         {
           path: "/order-review",
           element: <OrderReview />,
-          loader: (_) => fetch(`./products.json`),
+          loader: shoppingCart,
         },
         {
           path: "/login",
