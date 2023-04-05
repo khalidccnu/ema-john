@@ -4,25 +4,9 @@ const ProductDetail = ({
   product: { img, name, price, category, seller, ratings },
 }) => {
   const vsRating = [];
-  let emptyRating = (
-    <box-icon
-      type="regular"
-      name="star"
-      size="0.8rem"
-      color="#ffa534"
-    ></box-icon>
-  );
-  let halfRating = (
-    <box-icon
-      type="solid"
-      name="star-half"
-      size="0.8rem"
-      color="#ffa534"
-    ></box-icon>
-  );
-  let fullRating = (
-    <box-icon type="solid" name="star" size="0.8rem" color="#ffa534"></box-icon>
-  );
+  let emptyRating = <i className="uil uil-star"></i>;
+  let halfRating = <i className="uis uis-star-half-alt"></i>;
+  let fullRating = <i className="uis uis-star"></i>;
 
   for (let i = 0; i < 5; i++) {
     if (ratings !== undefined) {
@@ -57,13 +41,13 @@ const ProductDetail = ({
             <div className="card-body justify-between">
               <div>
                 <h2 className="card-title">{name}</h2>
-                <small className="-mt-3">
+                <small className="-mt-3 text-yellow-500">
                   {vsRating.map((rating) => rating)}
                 </small>
                 <div className="flex justify-between">
                   <h4 className="font-medium">${price}</h4>
                   <h4 className="flex items-center space-x-1">
-                    <box-icon name="user"></box-icon>
+                    <i className="uil uil-user-circle"></i>
                     <span>{seller}</span>
                   </h4>
                 </div>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, useNavigation } from "react-router-dom";
 import { CircleLoader } from "react-spinners";
-import "boxicons";
 import { getCartFromLS } from "../utility/index.js";
 import Products from "../component/Products.jsx";
 import Cart from "../component/Cart.jsx";

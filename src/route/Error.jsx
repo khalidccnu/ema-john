@@ -28,7 +28,7 @@ const Error = () => {
                   className="btn btn-sm btn-accent"
                   onClick={(_) => navigate(-1)}
                 >
-                  <box-icon name="arrow-back"></box-icon>
+                  <i className="uis uis-arrow-left text-xl"></i>
                   <span>Back</span>
                 </button>
               </div>

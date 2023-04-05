@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "boxicons";
 import {
   addProductToLS,
   getCartFromLS,
@@ -49,17 +48,14 @@ const Product = ({ product, productDetail, addToCart, clearCart }) => {
           className="absolute top-4 left-4 cursor-pointer"
           onClick={(_) => productDetail(product)}
         >
-          <box-icon name="show" color="#038b03"></box-icon>
+          <i className="uil uil-eye text-green-500"></i>
         </label>
         {existProduct ? (
           <button
             className="absolute top-4 right-4"
             onClick={handleRemoveFromCart}
           >
-            <box-icon
-              name="message-rounded-minus"
-              color="rgb(218, 13, 13)"
-            ></box-icon>
+            <i className="uil uil-minus-circle text-red-500"></i>
           </button>
         ) : null}
       </figure>
@@ -75,7 +71,7 @@ const Product = ({ product, productDetail, addToCart, clearCart }) => {
           onClick={handleAddToCart}
         >
           <span>Add to Cart</span>
-          <box-icon type="solid" name="cart-add"></box-icon>
+          <i className="uil uil-shopping-bag text-lg"></i>
         </button>
       </div>
     </div>

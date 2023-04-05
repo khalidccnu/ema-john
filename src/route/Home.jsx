@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigation, useNavigate } from "react-router-dom";
-import imgHome from "../asset/home.jpg";
 import { CircleLoader } from "react-spinners";
+import imgHome from "../asset/home.jpg";
 
 const Home = () => {
   const { state } = useNavigation();

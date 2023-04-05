@@ -20,27 +20,19 @@ const Nav = ({ navLink }) => {
             {navLink ? (
               <div className="navbar-nav relative">
                 <span
-                  className="sm:hidden cursor-pointer"
+                  className="sm:hidden text-2xl text-white cursor-pointer"
                   onClick={handleHbMenu}
                 >
                   {hbMenu ? (
-                    <box-icon
-                      type="regular"
-                      name="menu-alt-right"
-                      color="#fff"
-                    ></box-icon>
+                    <i className="uil uil-times-circle"></i>
                   ) : (
-                    <box-icon
-                      type="regular"
-                      name="menu"
-                      color="#fff"
-                    ></box-icon>
+                    <i className="uil uil-bars"></i>
                   )}
                 </span>
                 <ul
                   className={`menu menu-compact sm:menu-normal sm:menu-horizontal absolute sm:static ${
                     hbMenu ? "top-10" : "-top-60"
-                  } right-0 bg-neutral-800 sm:bg-transparent w-52 sm:w-auto p-2 sm:p-0 rounded-box shadow sm:shadow-none capitalize`}
+                  } right-0 bg-neutral-800 sm:bg-transparent w-52 sm:w-auto p-2 sm:p-0 rounded-box shadow sm:shadow-none z-50 capitalize`}
                 >
                   <li className="text-white">
                     <NavLink

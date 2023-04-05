@@ -28,12 +28,18 @@ const Cart = ({ cart, addToCart, clearCart }) => {
     if (showCart) {
       elem.parentElement.classList.replace("left-1/2", "left-full");
       elem.parentElement.classList.remove("-translate-x-1/2");
-      elem.firstElementChild.setAttribute("name", "left-arrow");
+      elem.firstElementChild.classList.replace(
+        "uil-arrow-to-right",
+        "uil-left-arrow-from-left"
+      );
       setShowCart(false);
     } else {
       elem.parentElement.classList.replace("left-full", "left-1/2");
       elem.parentElement.classList.add("-translate-x-1/2");
-      elem.firstElementChild.setAttribute("name", "right-arrow");
+      elem.firstElementChild.classList.replace(
+        "uil-left-arrow-from-left",
+        "uil-arrow-to-right"
+      );
       setShowCart(true);
     }
   };
@@ -45,17 +51,12 @@ const Cart = ({ cart, addToCart, clearCart }) => {
   };
 
   return (
-    <div className="cart fixed top-1/2 -translate-y-1/2 left-full bg-neutral-300 px-5 py-6 rounded-box transition-[left] duration-300">
+    <div className="cart fixed top-1/2 -translate-y-1/2 left-full bg-neutral-300 min-w-[14rem] px-5 py-6 rounded-box transition-[left] duration-300">
       <div
         className="absolute top-1/2 right-[calc(100%_-_1.25rem)] -translate-x-1/2 -translate-y-1/2 cursor-pointer"
         onClick={(e) => toggleCart(e)}
       >
-        <box-icon
-          type="solid"
-          name="left-arrow"
-          color="rgb(212 212 212)"
-          size="3rem"
-        ></box-icon>
+        <i className="uil uil-left-arrow-from-left text-4xl"></i>
       </div>
       <div>
         <h2 className="relative font-semibold text-2xl text-center after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1/4 after:h-0.5 after:bg-gray-500">
@@ -76,7 +77,7 @@ const Cart = ({ cart, addToCart, clearCart }) => {
           onClick={handleClearCart}
         >
           <span>Clear Cart</span>
-          <box-icon name="trash" color="#fff"></box-icon>
+          <i className="uil uil-trash-alt"></i>
         </button>
         <button
           type="button"
@@ -84,7 +85,7 @@ const Cart = ({ cart, addToCart, clearCart }) => {
           onClick={(_) => navigate("/order-review")}
         >
           <span>Review Order</span>
-          <box-icon name="right-arrow-alt" color="#fff"></box-icon>
+          <i className="uil uil-arrow-right"></i>
         </button>
       </div>
     </div>

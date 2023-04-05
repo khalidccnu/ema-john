@@ -73,8 +73,12 @@ const Signup = () => {
                 />
               </div>
               <div>
-                <button type="submit" className="btn btn-sm btn-accent w-full">
-                  Signup
+                <button
+                  type="submit"
+                  className="btn btn-sm btn-accent w-full space-x-1"
+                >
+                  <span>Signup</span>
+                  <i className="uil uil-user-plus text-lg"></i>
                 </button>
               </div>
               <div className="flex flex-col sm:flex-row sm:justify-center sm:space-x-2">

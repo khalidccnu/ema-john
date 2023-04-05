@@ -59,8 +59,12 @@ const Login = () => {
                 />
               </div>
               <div>
-                <button type="submit" className="btn btn-sm btn-accent w-full">
-                  Login
+                <button
+                  type="submit"
+                  className="btn btn-sm btn-accent w-full space-x-1"
+                >
+                  <span>Login</span>
+                  <i className="uil uil-sign-in-alt rotate-90"></i>
                 </button>
               </div>
               <div className="flex flex-col sm:flex-row sm:justify-center sm:space-x-2">

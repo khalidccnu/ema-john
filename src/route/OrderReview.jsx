@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, useNavigation } from "react-router-dom";
+import { CircleLoader } from "react-spinners";
 import {
   deleteCartFromLS,
   getCartFromLS,
   removeProductFromLS,
 } from "../utility/index.js";
 import imgEmptyCart from "../asset/empty-cart.svg";
-import { CircleLoader } from "react-spinners";
 
 const OrderReview = () => {
   let totalPrice = 0,
@@ -83,15 +83,10 @@ const OrderReview = () => {
                     </div>
                     <div className="ml-auto">
                       <button
-                        className="btn btn-sm btn-circle btn-error"
+                        className="btn btn-sm btn-circle btn-error text-white"
                         onClick={(_) => removeProduct(product.id)}
                       >
-                        <box-icon
-                          type="solid"
-                          name="trash"
-                          size="1rem"
-                          color="#fff"
-                        ></box-icon>
+                        <i className="uil uil-trash-alt"></i>
                       </button>
                     </div>
                   </div>
@@ -119,14 +114,14 @@ const OrderReview = () => {
                     onClick={handleClearCart}
                   >
                     <span>Clear Cart</span>
-                    <box-icon name="trash" color="#fff"></box-icon>
+                    <i className="uil uil-trash-alt"></i>
                   </button>
                   <button
                     type="button"
                     className="btn btn-sm w-full h-auto py-2 space-x-1 text-white"
                   >
                     <span>Proceed Checkout</span>
-                    <box-icon name="right-arrow-alt" color="#fff"></box-icon>
+                    <i className="uil uil-arrow-right"></i>
                   </button>
                 </div>
               </div>
