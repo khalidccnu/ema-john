@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  UilArrowRight,
+  UilArrowToRight,
+  UilLeftArrowFromLeft,
+  UilTrashAlt,
+} from "./Unicons.jsx";
 import { deleteCartFromLS, shoppingCartCalc } from "../utility/index.js";
 
 const Cart = ({ cart, addToCart, clearCart }) => {
@@ -16,18 +22,10 @@ const Cart = ({ cart, addToCart, clearCart }) => {
     if (showCart) {
       elem.parentElement.classList.replace("left-1/2", "left-full");
       elem.parentElement.classList.remove("-translate-x-1/2");
-      elem.firstElementChild.classList.replace(
-        "uil-arrow-to-right",
-        "uil-left-arrow-from-left"
-      );
       setShowCart(false);
     } else {
       elem.parentElement.classList.replace("left-full", "left-1/2");
       elem.parentElement.classList.add("-translate-x-1/2");
-      elem.firstElementChild.classList.replace(
-        "uil-left-arrow-from-left",
-        "uil-arrow-to-right"
-      );
       setShowCart(true);
     }
   };
@@ -52,7 +50,11 @@ const Cart = ({ cart, addToCart, clearCart }) => {
         className="absolute top-1/2 right-[calc(100%_-_1.25rem)] -translate-x-1/2 -translate-y-1/2 cursor-pointer"
         onClick={(e) => toggleCart(e)}
       >
-        <i className="uil uil-left-arrow-from-left text-4xl"></i>
+        {showCart ? (
+          <UilArrowToRight className="h-10" />
+        ) : (
+          <UilLeftArrowFromLeft className="h-10" />
+        )}
       </div>
       <div>
         <h2 className="relative font-semibold text-2xl text-center after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1/4 after:h-0.5 after:bg-gray-500">
@@ -73,7 +75,7 @@ const Cart = ({ cart, addToCart, clearCart }) => {
           onClick={handleClearCart}
         >
           <span>Clear Cart</span>
-          <i className="uil uil-trash-alt"></i>
+          <UilTrashAlt className="h-4 fill-white" />
         </button>
         <button
           type="button"
@@ -81,7 +83,7 @@ const Cart = ({ cart, addToCart, clearCart }) => {
           onClick={(_) => navigate("/order-review")}
         >
           <span>Review Order</span>
-          <i className="uil uil-arrow-right"></i>
+          <UilArrowRight className="h-4 fill-white" />
         </button>
       </div>
     </div>

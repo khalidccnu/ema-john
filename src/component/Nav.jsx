@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { UilBars, UilTimesCircle } from "./Unicons.jsx";
 import brandLogo from "../asset/logo.svg";
 
 const Nav = ({ navLink }) => {
@@ -20,13 +21,13 @@ const Nav = ({ navLink }) => {
             {navLink ? (
               <div className="navbar-nav relative">
                 <span
-                  className="sm:hidden text-2xl text-white cursor-pointer"
+                  className="sm:hidden cursor-pointer"
                   onClick={handleHbMenu}
                 >
                   {hbMenu ? (
-                    <i className="uil uil-times-circle"></i>
+                    <UilTimesCircle className="h-6 fill-white" />
                   ) : (
-                    <i className="uil uil-bars"></i>
+                    <UilBars className="h-6 fill-white" />
                   )}
                 </span>
                 <ul

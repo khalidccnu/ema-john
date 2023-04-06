@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, useRouteError } from "react-router-dom";
+import { UisArrowLeft } from "../component/Unicons.jsx";
 import Nav from "../component/Nav.jsx";
 import Footer from "../component/Footer.jsx";
 import img404 from "../asset/404.svg";
@@ -28,7 +29,7 @@ const Error = () => {
                   className="btn btn-sm btn-accent"
                   onClick={(_) => navigate(-1)}
                 >
-                  <i className="uis uis-arrow-left text-xl"></i>
+                  <UisArrowLeft className="h-6 fill-[rgb(59,_38,_0)]" />
                   <span>Back</span>
                 </button>
               </div>

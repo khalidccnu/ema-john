@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, useNavigation } from "react-router-dom";
 import { CircleLoader } from "react-spinners";
+import { UilArrowRight, UilTrashAlt } from "../component/Unicons.jsx";
 import {
   deleteCartFromLS,
   removeProductFromLS,
@@ -67,10 +68,10 @@ const OrderReview = () => {
                     </div>
                     <div className="ml-auto">
                       <button
-                        className="btn btn-sm btn-circle btn-error text-white"
+                        className="btn btn-sm btn-circle btn-error"
                         onClick={(_) => removeProduct(product.id)}
                       >
-                        <i className="uil uil-trash-alt"></i>
+                        <UilTrashAlt className="h-4 fill-white" />
                       </button>
                     </div>
                   </div>
@@ -100,14 +101,14 @@ const OrderReview = () => {
                     onClick={handleClearCart}
                   >
                     <span>Clear Cart</span>
-                    <i className="uil uil-trash-alt"></i>
+                    <UilTrashAlt className="h-4 fill-white" />
                   </button>
                   <button
                     type="button"
                     className="btn btn-sm w-full h-auto py-2 space-x-1 text-white"
                   >
                     <span>Proceed Checkout</span>
-                    <i className="uil uil-arrow-right"></i>
+                    <UilArrowRight className="h-4 fill-white" />
                   </button>
                 </div>
               </div>

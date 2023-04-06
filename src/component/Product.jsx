@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { UilEye, UilMinusCircle, UilShoppingBag } from "./Unicons.jsx";
 import {
   addProductToLS,
   getCartFromLS,
@@ -48,14 +49,14 @@ const Product = ({ product, productDetail, addToCart, clearCart }) => {
           className="absolute top-4 left-4 cursor-pointer"
           onClick={(_) => productDetail(product)}
         >
-          <i className="uil uil-eye text-green-500"></i>
+          <UilEye className="h-4 fill-green-500" />
         </label>
         {existProduct ? (
           <button
             className="absolute top-4 right-4"
             onClick={handleRemoveFromCart}
           >
-            <i className="uil uil-minus-circle text-red-500"></i>
+            <UilMinusCircle className="h-4 fill-red-500" />
           </button>
         ) : null}
       </figure>
@@ -71,7 +72,7 @@ const Product = ({ product, productDetail, addToCart, clearCart }) => {
           onClick={handleAddToCart}
         >
           <span>Add to Cart</span>
-          <i className="uil uil-shopping-bag text-lg"></i>
+          <UilShoppingBag className="h-5 fill-[rgb(59,_38,_0)]" />
         </button>
       </div>
     </div>

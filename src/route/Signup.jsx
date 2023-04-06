@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigation } from "react-router-dom";
 import { CircleLoader } from "react-spinners";
+import { UilUserPlus } from "../component/Unicons.jsx";
 import logoGoogle from "../asset/logo-google.png";
 
 const Signup = () => {
@@ -78,7 +79,7 @@ const Signup = () => {
                   className="btn btn-sm btn-accent w-full space-x-1"
                 >
                   <span>Signup</span>
-                  <i className="uil uil-user-plus text-lg"></i>
+                  <UilUserPlus className="h-5 fill-[rgb(59,_38,_0)]" />
                 </button>
               </div>
               <div className="flex flex-col sm:flex-row sm:justify-center sm:space-x-2">

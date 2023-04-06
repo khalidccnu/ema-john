@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigation } from "react-router-dom";
 import { CircleLoader } from "react-spinners";
+import { UilSignInAlt } from "../component/Unicons.jsx";
 import logoGoogle from "../asset/logo-google.png";
 
 const Login = () => {
@@ -64,7 +65,7 @@ const Login = () => {
                   className="btn btn-sm btn-accent w-full space-x-1"
                 >
                   <span>Login</span>
-                  <i className="uil uil-sign-in-alt rotate-90"></i>
+                  <UilSignInAlt className="h-5 fill-[rgb(59,_38,_0)] rotate-180" />
                 </button>
               </div>
               <div className="flex flex-col sm:flex-row sm:justify-center sm:space-x-2">
