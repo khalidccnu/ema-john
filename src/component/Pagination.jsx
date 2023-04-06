@@ -13,7 +13,9 @@ const Pagination = ({ total, currentPage, setCurrentPage, perPage }) => {
           if (
             page === currentPage ||
             (page < currentPage && page >= currentPage - 2) ||
-            (page > currentPage && page <= currentPage + 2)
+            (page > currentPage && page <= currentPage + 2) ||
+            (page <= 5 && currentPage <= 2) ||
+            (page >= pageCount - 4 && currentPage >= pageCount - 1)
           ) {
             return (
               <button
