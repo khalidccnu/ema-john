@@ -29,7 +29,7 @@ export const getCartFromLS = (_) => {
 export const deleteCartFromLS = (_) => localStorage.removeItem("cart");
 
 export const shoppingCart = async (items) => {
-  if (typeof items === "object") items = 0;
+  if (typeof items === "object" && !(items instanceof Array)) items = 0;
 
   let products =
     items ||

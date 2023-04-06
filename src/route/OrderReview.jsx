@@ -55,7 +55,10 @@ const OrderReview = () => {
             <div className="cart-product space-y-4">
               {cart.map((product) => {
                 return (
-                  <div className="flex items-center p-4 rounded-lg bg-neutral-300/50">
+                  <div
+                    key={product.id}
+                    className="flex items-center p-4 rounded-lg bg-neutral-300/50"
+                  >
                     <div className="max-w-[4rem]">
                       <img src={product.img} alt="" className="rounded-lg" />
                     </div>
