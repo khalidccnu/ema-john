@@ -1,18 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { UilBars, UilTimesCircle } from "./Unicons.jsx";
 import brandLogo from "../asset/logo.svg";
 
 const Nav = ({ navLink }) => {
   const [hbMenu, setHbMenu] = useState(false);
+  const collapseHbMenu = useRef();
 
   const handleHbMenu = (_) => {
     setHbMenu(!hbMenu);
   };
 
+  const handleCollapseHbMenu = ({ target: elem }) => {
+    if (!collapseHbMenu.current.contains(elem)) setHbMenu(false);
+  };
+
+  useEffect((_) => {
+    document.addEventListener("mousedown", handleCollapseHbMenu);
+
+    return (_) =>
+      document.removeEventListener("mousedown", handleCollapseHbMenu);
+  }, []);
+
   return (
     <>
-      <nav className="bg-neutral-900">
+      <nav className="bg-neutral-900" ref={collapseHbMenu}>
         <div className="container">
           <div className="navbar justify-between">
             <div className="navbar-brand">
