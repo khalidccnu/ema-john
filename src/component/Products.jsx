@@ -1,17 +1,8 @@
 import React, { useState } from "react";
 import Product from "./Product.jsx";
-import Pagination from "./Pagination.jsx";
 import ProductDetail from "./ProductDetail.jsx";
 
-const Products = ({
-  currentProducts,
-  productsLength,
-  currentPage,
-  setCurrentPage,
-  perPage,
-  addToCart,
-  clearCart,
-}) => {
+const Products = ({ currentProducts, addToCart, clearCart }) => {
   const [productDetail, setProductDetail] = useState([]);
 
   return (
@@ -27,12 +18,6 @@ const Products = ({
           />
         ))}
       </div>
-      <Pagination
-        total={productsLength}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        perPage={perPage}
-      />
       <ProductDetail product={productDetail} />
     </div>
   );

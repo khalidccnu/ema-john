@@ -8,15 +8,26 @@ import Cart from "../component/Cart.jsx";
 const Shop = () => {
   const { state } = useNavigation();
   const products = useLoaderData();
-  const [currentPage, setCurrentPage] = useState(1);
+  const [productsLimit, setProductsLimit] = useState(9);
   const [cart, setCart] = useState([]);
   const [addToCart, setAddToCart] = useState(false);
   const [clearCart, setClearCart] = useState(false);
 
-  let productsPerPage = 9;
-  let lastProductIndex = currentPage * productsPerPage;
-  let firstProductIndex = lastProductIndex - productsPerPage;
-  const currentProducts = products.slice(firstProductIndex, lastProductIndex);
+  const currentProducts = products.slice(0, productsLimit);
+
+  const handleCurrentProducts = (_) => {
+    if (
+      innerHeight + document.documentElement.scrollTop + 1 >=
+      document.documentElement.scrollHeight
+    )
+      setProductsLimit((prevState) => prevState + 9);
+  };
+
+  useEffect((_) => {
+    addEventListener("scroll", handleCurrentProducts);
+
+    return (_) => removeEventListener("scroll", handleCurrentProducts);
+  }, []);
 
   useEffect(
     (_) => {
@@ -41,10 +52,6 @@ const Shop = () => {
           <>
             <Products
               currentProducts={currentProducts}
-              productsLength={products.length}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              perPage={productsPerPage}
               addToCart={setAddToCart}
               clearCart={clearCart}
             />
