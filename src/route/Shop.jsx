@@ -20,13 +20,16 @@ const Shop = () => {
       innerHeight + document.documentElement.scrollTop + 1 >=
       document.documentElement.scrollHeight
     )
-      setProductsLimit((prevState) => prevState + 9);
+      setProductsLimit((prevState) => {
+        if (prevState <= products.length) return prevState + 9;
+        else return prevState;
+      });
   };
 
-  useEffect((_) => {
+  useEffect(() => {
     addEventListener("scroll", handleCurrentProducts);
 
-    return (_) => removeEventListener("scroll", handleCurrentProducts);
+    return () => removeEventListener("scroll", handleCurrentProducts);
   }, []);
 
   useEffect(

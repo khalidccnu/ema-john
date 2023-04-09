@@ -13,13 +13,13 @@ const IsOnline = ({ children: Outlet }) => {
     setOnline(false);
   };
 
-  useEffect((_) => {
+  useEffect(() => {
     setOnline(typeof navigator.onLine === "boolean" ? navigator.onLine : true);
 
     addEventListener("online", handleOnlineStatus);
     addEventListener("offline", handleOfflineStatus);
 
-    return (_) => {
+    return () => {
       addEventListener("online", handleOnlineStatus);
       addEventListener("offline", handleOfflineStatus);
     };

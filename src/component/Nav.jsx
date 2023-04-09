@@ -15,10 +15,10 @@ const Nav = ({ navLink }) => {
     if (!collapseHbMenu.current.contains(elem)) setHbMenu(false);
   };
 
-  useEffect((_) => {
+  useEffect(() => {
     document.addEventListener("mousedown", handleCollapseHbMenu);
 
-    return (_) =>
+    return () =>
       document.removeEventListener("mousedown", handleCollapseHbMenu);
   }, []);
 
@@ -47,7 +47,7 @@ const Nav = ({ navLink }) => {
                     hbMenu ? "top-10" : "-top-60"
                   } right-0 bg-neutral-800 sm:bg-transparent w-52 sm:w-auto p-2 sm:p-0 rounded-box shadow sm:shadow-none z-50 capitalize`}
                 >
-                  <li className="text-white">
+                  <li className="text-white" onClick={(_) => setHbMenu(false)}>
                     <NavLink
                       to="/"
                       className={({ isActive }) =>
@@ -57,7 +57,7 @@ const Nav = ({ navLink }) => {
                       home
                     </NavLink>
                   </li>
-                  <li className="text-white">
+                  <li className="text-white" onClick={(_) => setHbMenu(false)}>
                     <NavLink
                       to="/shop"
                       className={({ isActive }) =>
@@ -67,7 +67,7 @@ const Nav = ({ navLink }) => {
                       shop
                     </NavLink>
                   </li>
-                  <li className="text-white">
+                  <li className="text-white" onClick={(_) => setHbMenu(false)}>
                     <NavLink
                       to="/order-review"
                       className={({ isActive }) =>
@@ -77,7 +77,7 @@ const Nav = ({ navLink }) => {
                       order review
                     </NavLink>
                   </li>
-                  <li className="text-white">
+                  <li className="text-white" onClick={(_) => setHbMenu(false)}>
                     <NavLink
                       to="/login"
                       className={({ isActive }) =>
